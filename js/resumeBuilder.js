@@ -110,7 +110,6 @@ var projects = {
 		for (proj in projects.projects) {
 			var currentProj = projects.projects[proj];
 			formattedStrings = [];
-			formattedStrings.push(HTMLprojectStart);
 			formattedStrings.push(HTMLprojectTitle.replace("%data%", currentProj.title));
 			formattedStrings.push(HTMLprojectDates.replace("%data%", currentProj.dates));
 			formattedStrings.push(HTMLprojectDescription.replace("%data%", currentProj.description))
@@ -121,8 +120,11 @@ var projects = {
 				}
 			}
 			
+			$('#projects').append(HTMLprojectStart);
+
 			for (var i = 0; i < formattedStrings.length; i++) {
-				$('#projects').append(formattedStrings[i]);
+				console.log($('.project-entry').last().html());
+				$('.project-entry').last().append(formattedStrings[i]);
 			}
 		}
 	}

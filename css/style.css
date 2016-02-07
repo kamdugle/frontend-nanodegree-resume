@@ -160,7 +160,7 @@ img {
   padding: 10px;
 }
 
-#projects > img {
+.project-entry > img {
   max-width: 400px;
 }
 
