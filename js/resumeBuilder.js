@@ -1,17 +1,46 @@
-/* var skills = ["HTML, CSS, Javascript"]
-
 var bio = {
-	name: "Kam Bowman",
-	role: "Web Developer",
-	contacts: {
-		email: "Kamry.Bowman@gmail.com"
+	"bio": {
+		"name": "Kam Bowman",
+		"role": "Web Developer",
+		"contacts": {
+			"email": "Kamry.Bowman@gmail.com",
+			"mobile": "303-974-8974",
+			"github": "https://github.com/kamdugle/",
+			"location": "Denver, CO"
+			},
+		"bioPic": "images/My picture.jpg",
+		"welcomeMsg": "Welcome!",
+		"skills": ["HTML, CSS, Javascript"]
 	},
-	bioPic: "images/My picture.jpg",
-	welcomeMsg: "Welcome!",
-	skills: skills
-};
+	"display": function() {
+			var formattedProps = [];
+			formattedProps.push(HTMLheaderName.replace('%data%', bio.bio.name));
+			formattedProps.push(HTMLheaderRole.replace('%data%', bio.bio.role));
+			formattedProps.push(HTMLbioPic.replace('%data%', bio.bio.bioPic));
+			formattedProps.push(HTMLwelcomeMsg.replace('%data%', bio.bio.welcomeMsg));
 
-var formattedName = HTMLheaderName.replace("%data%", bio.name);
+			$('#header').prepend(formattedProps);
+
+			var formattedContacts = [];
+			var contactTypes = ["email", "mobile", "twitter", "github", "blog", "location"]
+			for (i = 0; i < contactTypes.length; i++) {
+				var contact = bio.bio.contacts[contactTypes[i]];
+				if (contact) {
+					var formatting = window['HTML' + contactTypes[i]];
+					formattedContacts.push(formatting.replace('%data%', contact));
+			}
+			}
+			console.log(formattedContacts);
+			for (i = 0; i < formattedContacts.length; i++) {
+				$('#topContacts').prepend(formattedContacts[i]);
+			}
+
+		}
+	};
+bio.display();
+
+
+/*
 var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
 $("#header").prepend(formattedName, formattedRole);
 
@@ -20,9 +49,10 @@ var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
 var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMsg);
 var formattedSkills = HTMLskills.replace("%data%", bio.skills);
 
-$("#main").prepend(formattedBioPic, formattedWelcomeMsg, formattedSkills, formattedEmail); */
+$("#main").append(formattedBioPic, formattedWelcomeMsg, formattedSkills, formattedEmail);
+*/
 
-var "work" = {
+var work = {
 	"jobs": [
 	{
 		"employer": "Colorado Lending Source",
@@ -47,11 +77,6 @@ var "work" = {
 	}
 	]};
 
-}
-	work.title = "Loan Officer";
-	work.employer = "Colorado Lending Source";
-	work.dates = "2013-Present"
-
 var education = {
 	"schools": [
 		{"name": "University of Michigan",
@@ -66,21 +91,79 @@ var education = {
 		}]
 };
 
-var projects = {[
+var projects = {
+	"projects":
+	[
 	{
 		"title": "Mock website",
 		"dates": "2016",
 		"description": "Made various websites on Udacity website.",
-		"images" = "https://www.tedcruz.org/wp-content/uploads/2016/01/20160128_RockyRubio.png"
-	}]
-};
+		"images": ["https://www.tedcruz.org/wp-content/uploads/2016/01/20160128_RockyRubio.png"]
+	},
+	{
+		"title": "Wock Mebsite",
+		"dates": "2013",
+		"description": "Switched the first letters around on the words in seven sentences.",
+		"images": ["https://www.tedcruz.org/wp-content/uploads/2016/01/meet-ted-03.jpg", "https://www.tedcruz.org/wp-content/uploads/2016/01/Security2FINAL.jpg"]
+	}],
+	"display": function() {;
+		for (proj in projects.projects) {
+			var currentProj = projects.projects[proj];
+			formattedStrings = [];
+			formattedStrings.push(HTMLprojectStart);
+			formattedStrings.push(HTMLprojectTitle.replace("%data%", currentProj.title));
+			formattedStrings.push(HTMLprojectDates.replace("%data%", currentProj.dates));
+			formattedStrings.push(HTMLprojectDescription.replace("%data%", currentProj.description))
+			
+			if (currentProj.images.length > 0) {
+				for (var i = 0; i < currentProj.images.length; i++) {
+					formattedStrings.push(HTMLprojectImage.replace("%data%", currentProj.images[i]))
+				}
+			}
+			
+			for (var i = 0; i < formattedStrings.length; i++) {
+				$('#projects').append(formattedStrings[i]);
+			}
+		}
+	}
+	};
 
-var bio = {
-	"name": "Kam Bowman",
-	"role": "Front End Web Developer",
-	"welcomeMessage": "Get stuffed, kid, haha!",
-	"contacts": {
-		"mobile": "555-555-5555",
-		"email": "Kamry.Bowman@gmail.com",
-		"github": "Kamdugle"}
-};
+projects.display();
+
+function displayWork() {
+	for (i in work.jobs) {
+		$("#workExperience").append(HTMLworkStart);
+		console.log(HTMLworkDates.replace("%data%", work["jobs"][i]["years"]));
+		var jobEmployer = HTMLworkEmployer.replace("%data%", work["jobs"][i]["employer"]);
+		var jobTitle = HTMLworkTitle.replace("%data%", work["jobs"][i]["title"]);
+		var formattedTitle = jobEmployer + jobTitle;
+		$(".work-entry:last").append(formattedTitle);
+
+		var jobYears = HTMLworkDates.replace("%data%", work.jobs[i].years);
+		$(".work-entry:last").append(jobYears);
+
+		var jobLocation = HTMLworkLocation.replace("%data%", work.jobs[i]["location"]);
+		$(".work-entry:last").append(jobLocation);
+
+		var jobDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
+		$(".work-entry:last").append(jobDescription);
+	}
+}
+
+$(document).click(function(loc) {
+  logClicks(loc.pageX, loc.pageY);
+});
+
+displayWork();
+
+$('#mapDiv').append(googleMap);
+
+
+
+/* function inName(name) {
+	var names = name.split(" ");
+	var newName = names[0] + " " + names[1].toUpperCase();
+	return newName;
+}
+
+$('#main').append(internationalizeButton); */
