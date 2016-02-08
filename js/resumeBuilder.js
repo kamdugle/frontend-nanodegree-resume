@@ -98,13 +98,13 @@ var projects = {
 		"title": "Mock website",
 		"dates": "2016",
 		"description": "Made various websites on Udacity website.",
-		"images": ["https://www.tedcruz.org/wp-content/uploads/2016/01/20160128_RockyRubio.png"]
+		"images": ["images/cornice.jpg"]
 	},
 	{
 		"title": "Wock Mebsite",
 		"dates": "2013",
 		"description": "Switched the first letters around on the words in seven sentences.",
-		"images": ["https://www.tedcruz.org/wp-content/uploads/2016/01/meet-ted-03.jpg", "https://www.tedcruz.org/wp-content/uploads/2016/01/Security2FINAL.jpg"]
+		"images": ["images/fountain.jpg", "images/fountain 2.jpg"]
 	}],
 	"display": function() {;
 		for (proj in projects.projects) {

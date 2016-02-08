@@ -150,11 +150,11 @@ ul {
 }
 
 .biopic {
-  float: left;
+  display: block;
+  margin: auto;
   padding: 4px;
-  width: 200px;
-  display: none;
-  background-color: white;
+  width: 20%;
+  background-color: white;;
 }
 
 img {
@@ -163,10 +163,12 @@ img {
 
 .project-entry > img {
   max-width: 400px;
+  width: 80%;
 }
 
 span {
   padding: 5px;
+  display:inline-block;
 }
 
 #lets-connect {
@@ -214,6 +216,17 @@ span {
 @media only screen and (min-width: 750px) {
   #skills-h3,
   .biopic {
-    display: block;
+  width: 250px;
+  float: left;
+  }
+  .img
+}
+#topContacts {
+
+}
+
+@media only screen and (max-width: 200px) {
+  .project-entry > img {
+    display: none;
   }
 }
