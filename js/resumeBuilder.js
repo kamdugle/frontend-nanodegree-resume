@@ -8,7 +8,7 @@ var bio = {
 			"github": "https://github.com/kamdugle/",
 			"location": "Denver, CO"
 			},
-		"bioPic": "images/My picture.jpg",
+		"bioPic": "images/omnis vanitas.svg",
 		"welcomeMsg": "Welcome!",
 		"skills": ["HTML, CSS, Javascript"]
 	},
