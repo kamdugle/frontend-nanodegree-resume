@@ -76,7 +76,29 @@ var work = {
 		"location": "Madrid, Spain",
 		"description": "Participated in language immersion programs in elementary and high schools in Spain"		
 	}
-	]};
+	],
+	"display": function() {
+		for (i in work.jobs) {
+			$("#workExperience").append(HTMLworkStart);
+			console.log(HTMLworkDates.replace("%data%", work["jobs"][i]["years"]));
+			var jobEmployer = HTMLworkEmployer.replace("%data%", work["jobs"][i]["employer"]);
+			var jobTitle = HTMLworkTitle.replace("%data%", work["jobs"][i]["title"]);
+			var formattedTitle = jobEmployer + jobTitle;
+			$(".work-entry:last").append(formattedTitle);
+
+			var jobYears = HTMLworkDates.replace("%data%", work.jobs[i].years);
+			$(".work-entry:last").append(jobYears);
+
+			var jobLocation = HTMLworkLocation.replace("%data%", work.jobs[i]["location"]);
+			$(".work-entry:last").append(jobLocation);
+
+			var jobDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
+			$(".work-entry:last").append(jobDescription);
+		}
+	}
+};
+
+work.display();
 
 var education = {
 	"schools": [
@@ -155,31 +177,9 @@ var projects = {
 
 projects.display();
 
-function displayWork() {
-	for (i in work.jobs) {
-		$("#workExperience").append(HTMLworkStart);
-		console.log(HTMLworkDates.replace("%data%", work["jobs"][i]["years"]));
-		var jobEmployer = HTMLworkEmployer.replace("%data%", work["jobs"][i]["employer"]);
-		var jobTitle = HTMLworkTitle.replace("%data%", work["jobs"][i]["title"]);
-		var formattedTitle = jobEmployer + jobTitle;
-		$(".work-entry:last").append(formattedTitle);
-
-		var jobYears = HTMLworkDates.replace("%data%", work.jobs[i].years);
-		$(".work-entry:last").append(jobYears);
-
-		var jobLocation = HTMLworkLocation.replace("%data%", work.jobs[i]["location"]);
-		$(".work-entry:last").append(jobLocation);
-
-		var jobDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
-		$(".work-entry:last").append(jobDescription);
-	}
-}
-
 $(document).click(function(loc) {
   logClicks(loc.pageX, loc.pageY);
 });
-
-displayWork();
 
 $('#mapDiv').append(googleMap);
 
