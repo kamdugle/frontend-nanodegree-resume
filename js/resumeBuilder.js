@@ -37,11 +37,11 @@ var bio = {
 			}
 			for (i = 0; i < formattedContacts.length; i++) {
 				$('#topContacts').prepend(formattedContacts[i]);
+				$('#footerContacts').append(formattedContacts[i]);
 			}
 
 			if (bio.bio.skills.length > 0) {
 				$('#header').append(HTMLskillsStart);
-				console.log(HTMLskillsStart);
 				for (var i = 0; i < bio.bio.skills.length; i++) {
 					$('#skills').append(HTMLskills.replace('%data%', bio.bio.skills[i]));
 				}
@@ -80,7 +80,6 @@ var work = {
 	"display": function() {
 		for (i in work.jobs) {
 			$("#workExperience").append(HTMLworkStart);
-			console.log(HTMLworkDates.replace("%data%", work["jobs"][i]["years"]));
 			var jobEmployer = HTMLworkEmployer.replace("%data%", work["jobs"][i]["employer"]);
 			var jobTitle = HTMLworkTitle.replace("%data%", work["jobs"][i]["title"]);
 			var formattedTitle = jobEmployer + jobTitle;
@@ -106,30 +105,60 @@ var education = {
 		"location": "Ann Arbor, Michigan",
 		"degree": "Bachelors of the Arts",
 		"major": "Philosophy, Economics",
-		"dates": "2008-2010"
+		"dates": "2008-2010",
+		"url": "https://umich.edu/"
 		},
 		{"name": "Western Michigan University",
 		"location": "Kalamazoo, Michigan",
 		"degree": "Bachelors of the Arts, transfer",
 		"major": "Philosophy, Economics",
-		"dates": "2006-2008"
+		"dates": "2006-2008",
+		"url": "https://wmich.edu/"
+		}],
+	"onlineCourses": [
+		{"title": "How to Use Git and Github",
+		"school": "Udacity",
+		"date": "2016",
+		"url": "https://www.udacity.com/course/how-to-use-git-and-github--ud775"
+		},
+		{"title": "Javascript Basics",
+		"school": "Udacity",
+		"date": "2016",
+		"url": "https://www.udacity.com/course/javascript-basics--ud804"
 		}],
 
 		"display": function() {
 			for (school in education.schools) {
 				$('#education').append(HTMLschoolStart);
-				formattedStrings = [];
-				schoolProperties = ["name", "location", "degree", "major", "dates", "url"];
+				var formattedStrings = [];
+				var currentSchool = education.schools[school];
 
-				for (var i = 0; i < schoolProperties.length; i++) {
-					var currentProp = education.schools[school][schoolProperties[i]]
-					if (currentProp) {
-						var formatting = window['HTMLschool' + firstLetterUpper(schoolProperties[i])];
-						console.log('HTMLschool' + firstLetterUpper(schoolProperties[i]));
-						var formattedString = formatting.replace('%data%', currentProp)
-						$('.education-entry').append(formattedString);
-					}
-				}	
+				formattedStrings.push(HTMLschoolName.replace('%data%', currentSchool.name).replace('#', currentSchool.url) + HTMLschoolDegree.replace('%data%', currentSchool.degree));
+
+				formattedStrings.push(HTMLschoolDates.replace('%data%', currentSchool.dates));
+
+				formattedStrings.push(HTMLschoolLocation.replace('%data%', currentSchool.location));
+
+				formattedStrings.push(HTMLschoolMajor.replace('%data%', currentSchool.major));
+				
+				for(var i = 0; i < formattedStrings.length; i++)
+				$('.education-entry').last().append(formattedStrings[i]);
+
+			}
+			if (education.onlineCourses) {
+				$('#education').append(HTMLonlineClasses);
+				for (course in education.onlineCourses) {
+					$('#education').append(HTMLschoolStart);
+
+					var formattedStrings = [];
+					var currentCourse = education.onlineCourses[course];
+
+					$('.education-entry').last().append(HTMLonlineTitle.replace('%data%', currentCourse.title).replace("#", currentCourse.url) + HTMLonlineSchool.replace('%data%', currentCourse.school));
+
+					$('.education-entry').last().append(HTMLonlineDates.replace('%data%', currentCourse.date));
+
+					$('.education-entry').last().append('<br>');
+				}
 			}
 		}
 	};
@@ -168,7 +197,6 @@ var projects = {
 			$('#projects').append(HTMLprojectStart);
 
 			for (var i = 0; i < formattedStrings.length; i++) {
-				console.log($('.project-entry').last().html());
 				$('.project-entry').last().append(formattedStrings[i]);
 			}
 		}

@@ -164,7 +164,8 @@ img {
 
 .project-entry > img {
   max-width: 400px;
-  width: 80%;
+  min-width: 200px;
+  width: 40%;
 }
 
 span {
@@ -216,18 +217,19 @@ span {
 }
 
 @media only screen and (min-width: 750px) {
-/*  #skills-h3, */
+#skills-h3,
   .biopic {
   width: 250px;
   float: left;
   }
-  .img
-}
+  .project-entry > img {
+    width: 25%;
+  }
 #topContacts {
 
 }
 
-@media only screen and (max-width: 200px) {
+@media only screen and (max-width: 300px) {
   .project-entry > img {
     display: none;
   }
