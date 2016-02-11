@@ -1,3 +1,8 @@
+function firstLetterUpper(str) {
+	var fixedStr = str.slice(0, 1).toUpperCase() + str.slice(1);
+	return fixedStr;
+}
+
 var bio = {
 	"bio": {
 		"name": "Kam Bowman",
@@ -23,34 +28,30 @@ var bio = {
 
 			var formattedContacts = [];
 			var contactTypes = ["email", "mobile", "twitter", "github", "blog", "location"]
-			for (i = 0; i < contactTypes.length; i++) {
+			for (var i = 0; i < contactTypes.length; i++) {
 				var contact = bio.bio.contacts[contactTypes[i]];
 				if (contact) {
 					var formatting = window['HTML' + contactTypes[i]];
 					formattedContacts.push(formatting.replace('%data%', contact));
 			}
 			}
-			console.log(formattedContacts);
 			for (i = 0; i < formattedContacts.length; i++) {
 				$('#topContacts').prepend(formattedContacts[i]);
 			}
+
+			if (bio.bio.skills.length > 0) {
+				$('#header').append(HTMLskillsStart);
+				console.log(HTMLskillsStart);
+				for (var i = 0; i < bio.bio.skills.length; i++) {
+					$('#skills').append(HTMLskills.replace('%data%', bio.bio.skills[i]));
+				}
+			}
+
 
 		}
 	};
 bio.display();
 
-
-/*
-var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-$("#header").prepend(formattedName, formattedRole);
-
-var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
-var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
-var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMsg);
-var formattedSkills = HTMLskills.replace("%data%", bio.skills);
-
-$("#main").append(formattedBioPic, formattedWelcomeMsg, formattedSkills, formattedEmail);
-*/
 
 var work = {
 	"jobs": [
@@ -80,16 +81,38 @@ var work = {
 var education = {
 	"schools": [
 		{"name": "University of Michigan",
-		"city": "Ann Arbor, Michigan",
-		"majors": "Philosophy, Economics",
-		"years": "2008-2010"
+		"location": "Ann Arbor, Michigan",
+		"degree": "Bachelors of the Arts",
+		"major": "Philosophy, Economics",
+		"dates": "2008-2010"
 		},
 		{"name": "Western Michigan University",
-		"city": "Kalamazoo, Michigan",
-		"majors": "Philosophy, Economics",
-		"years": "2006-2008"
-		}]
-};
+		"location": "Kalamazoo, Michigan",
+		"degree": "Bachelors of the Arts, transfer",
+		"major": "Philosophy, Economics",
+		"dates": "2006-2008"
+		}],
+
+		"display": function() {
+			for (school in education.schools) {
+				$('#education').append(HTMLschoolStart);
+				formattedStrings = [];
+				schoolProperties = ["name", "location", "degree", "major", "dates", "url"];
+
+				for (var i = 0; i < schoolProperties.length; i++) {
+					var currentProp = education.schools[school][schoolProperties[i]]
+					if (currentProp) {
+						var formatting = window['HTMLschool' + firstLetterUpper(schoolProperties[i])];
+						console.log('HTMLschool' + firstLetterUpper(schoolProperties[i]));
+						var formattedString = formatting.replace('%data%', currentProp)
+						$('.education-entry').append(formattedString);
+					}
+				}	
+			}
+		}
+	};
+
+education.display();
 
 var projects = {
 	"projects":
