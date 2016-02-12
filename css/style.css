@@ -1,3 +1,5 @@
+/* http://paletton.com/palette.php?uid=52Q1g0k9mu13sLB6aAHcVq6gImm */
+
 body,
 div,
 ul,
@@ -12,6 +14,11 @@ h6 {
   padding:0;
   margin:0;
   font-family: "Roboto", sans-serif;
+  color: #4A447C;
+}
+
+body {
+  background-color: #C7C5DA;
 }
 
 .clear-fix {
@@ -26,7 +33,7 @@ h6 {
 
 h1 {
   font-size: 40px;
-  color: #f5a623;
+  color: #4A447C;
   line-height: 48px;
   display: inline;
 }
@@ -34,7 +41,7 @@ h1 {
 h2 {
   font-weight: bold;
   font-size: 24px;
-  color: #999;
+  color: ##B2A855;
   line-height: 29px;
   padding: 10px;
 }
@@ -42,14 +49,14 @@ h2 {
 h3 {
   font-style: italic;
   font-size: 20px;
-  color: #000;
+  color: #4A447C;
   line-height: 22px;
 }
 
 h4 {
   font-weight: bold;
   font-size: 14px;
-  color: #4a4a4a;
+  color: red;
   line-height: 17px;
 }
 
@@ -65,7 +72,7 @@ h5 {
 .date-text {
   font-style: italic;
   font-size: 14px;
-  color: #999;
+  color: #4A447C;
   line-height: 16px;
   float: left;
 }
@@ -73,7 +80,7 @@ h5 {
 .location-text {
   font-style: italic;
   font-size: 14px;
-  color: #999;
+  color: #4A447C;
   line-height: 16px;
   float: right;
 
@@ -81,13 +88,13 @@ h5 {
 
 p {
   font-size: 14px;
-  color: #333;
+  color: #4A447C;
   line-height: 21px;
 }
 
 a {
-  color: #1199c3;
-  text-decoration: none;
+  color: #FFFCE4;
+  text-decoration: underline;
   margin-top: 10px;
   display: block;
 }
@@ -100,37 +107,37 @@ a {
 }
 
 #skills-h3 {
-  color: #f5ae23;
+  color: #FFEACE;
   padding-left: 5px;
   display: inline-block;
 }
 
 .orange {
-  background-color: #f5ae23;
+  background-color: #AAD2AD;
 }
 
 .orange-text {
-  color: #f5ae23;
+  color: #FFEACE;
 }
 
 .white-text {
   font-weight: bold;
-  color: #fff;
+  color: #CCE5CE;
 }
 
 .gray {
-  background-color: #f3f3f3;
+  background-color: #C7C5DA;
   padding-bottom: 10px;
   clear:both;
 }
 
 .dark-gray {
-  background-color: #4a4a4a;
+  background-color: #A39FBF;
 }
 
 /* TODO: Replace with image later */
 #header {
-  background-color: #484848;
+  background-color: #438C48;
 }
 
 .flex-box {
@@ -155,7 +162,7 @@ ul {
   margin: auto;
   padding: 4px;
   width: 20%;
-  background-color: white;;
+  background-color: #C7C5DA;
 }
 
 img {
@@ -196,7 +203,8 @@ span {
     margin-top: 10%;
   }
   .biopic {
-    width: 150px;
+    /*width: 150px; */
+    width: 100%;
   }
   .welcome-message {
     display: none;
