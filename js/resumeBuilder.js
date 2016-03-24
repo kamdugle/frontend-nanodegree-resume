@@ -172,19 +172,21 @@ var projects = {
 		"title": "Mock website",
 		"dates": "2016",
 		"description": "Made various websites on Udacity website.",
-		"images": ["images/cornice.jpg"]
+		"images": ["images/cornice.jpg"],
+		"url": "./portfolio/index.html"
 	},
 	{
 		"title": "Wock Mebsite",
 		"dates": "2013",
 		"description": "Switched the first letters around on the words in seven sentences.",
-		"images": ["images/fountain.jpg", "images/fountain 2.jpg"]
+		"images": ["images/fountain.jpg", "images/fountain 2.jpg"],
+		"url": "./portfolio/index.html"
 	}],
 	"display": function() {;
 		for (proj in projects.projects) {
 			var currentProj = projects.projects[proj];
 			formattedStrings = [];
-			formattedStrings.push(HTMLprojectTitle.replace("%data%", currentProj.title));
+			formattedStrings.push(HTMLprojectTitle.replace("%data%", currentProj.title).replace("#", currentProj.url));
 			formattedStrings.push(HTMLprojectDates.replace("%data%", currentProj.dates));
 			formattedStrings.push(HTMLprojectDescription.replace("%data%", currentProj.description))
 			
